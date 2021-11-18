@@ -1,12 +1,23 @@
 package ru.sfedu.kursach.model.beans;
 
+import com.opencsv.bean.CsvBindByName;
+import org.simpleframework.xml.Element;
+
 import java.io.Serializable;
 import java.util.Objects;
 
 public class Student extends User implements Serializable {
+    @Element
+    @CsvBindByName
     private School school;
+    @Element
+    @CsvBindByName
     private int classNumber;
+    @Element
+    @CsvBindByName
     private char classLetter;
+    @Element
+    @CsvBindByName
     private Group group;
 
     public Student() {
