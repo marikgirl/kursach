@@ -3,6 +3,7 @@ package ru.sfedu.kursach;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import ru.sfedu.kursach.api.DataProviderCSV;
+import ru.sfedu.kursach.api.DataProviderXML;
 import ru.sfedu.kursach.model.beans.School;
 import ru.sfedu.kursach.utils.ConfigurationUtil;
 
@@ -23,12 +24,24 @@ public class kursachClient {
         schoolBean.setId();
         schoolBean.setNumber(58);
         DataProviderCSV dataProviderCSV = new DataProviderCSV();
+        DataProviderXML dataProviderXML = new DataProviderXML();
+
         dataProviderCSV.addSchoolRecord(schoolBean);
+        dataProviderXML.addSchoolRecord(schoolBean);
+
         dataProviderCSV.viewAllSchool();
+        dataProviderXML.viewAllSchool();
+
         schoolBean.setNumber(128);
+
         dataProviderCSV.receiveSchoolRecordById(schoolBean.getId());
+        dataProviderXML.receiveSchoolRecordById(schoolBean.getId());
+
         dataProviderCSV.updateSchoolRecord(schoolBean.getId(), schoolBean);
+        dataProviderXML.updateSchoolRecord(schoolBean.getId(), schoolBean);
+
         dataProviderCSV.viewAllSchool();
+        dataProviderXML.viewAllSchool();
         //String pathh = ConfigurationUtil.getConfigurationEntry(Constants.DB_CONFIG_USER);
 
 //        log.info(pathh);
