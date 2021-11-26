@@ -1,4 +1,12 @@
+/home/rados/IdeaProjects/kursach/src/main/java/ru/sfedu/kursach/model/beans/User.java
+/home/rados/IdeaProjects/kursach/src/main/java/ru/sfedu/kursach/model/beans/School.java
+/home/rados/IdeaProjects/kursach/src/main/java/ru/sfedu/kursach/model/beans/WrapperXML.java
+/home/rados/IdeaProjects/kursach/src/main/java/ru/sfedu/kursach/utils/ConfigurationUtil.java
 /home/rados/IdeaProjects/kursach/src/main/java/ru/sfedu/kursach/kursachClient.java
 /home/rados/IdeaProjects/kursach/src/main/java/ru/sfedu/kursach/Main.java
 /home/rados/IdeaProjects/kursach/src/main/java/ru/sfedu/kursach/Constants.java
-/home/rados/IdeaProjects/kursach/src/main/java/ru/sfedu/kursach/ConfigurationUtil.java
+/home/rados/IdeaProjects/kursach/src/main/java/ru/sfedu/kursach/api/DataProviderXML.java
+/home/rados/IdeaProjects/kursach/src/main/java/ru/sfedu/kursach/api/IDataProvider.java
+/home/rados/IdeaProjects/kursach/src/main/java/ru/sfedu/kursach/model/beans/Student.java
+/home/rados/IdeaProjects/kursach/src/main/java/ru/sfedu/kursach/model/beans/Group.java
+/home/rados/IdeaProjects/kursach/src/main/java/ru/sfedu/kursach/api/DataProviderCSV.java

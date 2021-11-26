@@ -1,4 +1,12 @@
 ru/sfedu/kursach/kursachClient.class
+ru/sfedu/kursach/model/beans/WrapperXML.class
+ru/sfedu/kursach/api/IDataProvider.class
+ru/sfedu/kursach/api/DataProviderCSV.class
+ru/sfedu/kursach/model/beans/School.class
+ru/sfedu/kursach/api/DataProviderXML.class
+ru/sfedu/kursach/model/beans/User.class
+ru/sfedu/kursach/model/beans/Student.class
+ru/sfedu/kursach/model/beans/Group.class
+ru/sfedu/kursach/utils/ConfigurationUtil.class
 ru/sfedu/kursach/Main.class
-ru/sfedu/kursach/ConfigurationUtil.class
 ru/sfedu/kursach/Constants.class

@@ -21,16 +21,11 @@ import java.util.function.Predicate;
 public class DataProviderXML implements IDataProvider{
     private static final Logger log = LogManager.getLogger(Main.class);
 
-    List<School> schoolBeans = null;
-    List<Student> studentBeans = null;
-    School schoolBean = new School();
-    Student studentBean = new Student();
-
     @Override
     public boolean viewAllSchool() {
         try {
             log.debug("Viewing users:");
-            schoolBeans = loadBeanList(Constants.SCHOOL_XML_SOURCE);
+            List<School> schoolBeans = loadBeanList(Constants.SCHOOL_XML_SOURCE);
             schoolBeans.forEach(log::debug);
             log.trace("Viewing School complete");
         }
@@ -46,7 +41,7 @@ public class DataProviderXML implements IDataProvider{
     public boolean viewAllStudent() {
         try {
             log.debug("Viewing users:");
-            studentBeans = loadBeanList(Constants.STUDENT_XML_SOURCE);
+            List<Student> studentBeans = loadBeanList(Constants.STUDENT_XML_SOURCE);
             studentBeans.forEach(log::debug);
             log.trace("Viewing School complete");
         }
@@ -64,7 +59,7 @@ public class DataProviderXML implements IDataProvider{
             if (school == null)
                 throw new Exception("Adding record error, record equals null");
             log.debug("Start adding record: reading file");
-            schoolBeans = loadBeanList(Constants.SCHOOL_XML_SOURCE);
+            List<School> schoolBeans = loadBeanList(Constants.SCHOOL_XML_SOURCE);
             log.trace("Adding record");
             schoolBeans.add(school);
             log.trace("Adding complete");
@@ -84,7 +79,7 @@ public class DataProviderXML implements IDataProvider{
             if (student == null)
                 throw new Exception("Adding record error, record equals null");
             log.debug("Start adding record: reading file");
-            studentBeans = loadBeanList(Constants.STUDENT_XML_SOURCE);
+            List<Student> studentBeans = loadBeanList(Constants.STUDENT_XML_SOURCE);
             log.trace("Adding record");
             studentBeans.add(student);
             log.trace("Adding complete");
@@ -102,13 +97,13 @@ public class DataProviderXML implements IDataProvider{
     public boolean deleteSchoolRecord(long id) {
         try {
             log.debug("Start deleting record: reading file");
-            schoolBeans = loadBeanList(Constants.SCHOOL_XML_SOURCE);
-            List<School> userBeansClone = loadBeanList(Constants.SCHOOL_XML_SOURCE);
+            List<School> schoolBeans = loadBeanList(Constants.SCHOOL_XML_SOURCE);
+            List<School> schoolBeansClone = loadBeanList(Constants.SCHOOL_XML_SOURCE);
             log.trace("Searching required record");
             Predicate<School> isDeletable = user -> user.getId() == id;
             log.trace("Removing required record");
             schoolBeans.removeIf(isDeletable);
-            if (schoolBeans.equals(userBeansClone)) {
+            if (schoolBeans.equals(schoolBeansClone)) {
                 throw new Exception("Deleting error, record with id "+id+" not found");
             }
             log.trace("Saving");
@@ -127,13 +122,13 @@ public class DataProviderXML implements IDataProvider{
     public boolean deleteStudentRecord(long id) {
         try {
             log.debug("Start deleting record: reading file");
-            studentBeans = loadBeanList(Constants.STUDENT_XML_SOURCE);
-            List<Student> userBeansClone = loadBeanList(Constants.STUDENT_XML_SOURCE);
+            List<Student> studentBeans = loadBeanList(Constants.STUDENT_XML_SOURCE);
+            List<Student> studentBeansClone = loadBeanList(Constants.STUDENT_XML_SOURCE);
             log.trace("Searching required record");
             Predicate<Student> isDeletable = user -> user.getId() == id;
             log.trace("Removing required record");
             studentBeans.removeIf(isDeletable);
-            if (studentBeans.equals(userBeansClone)) {
+            if (studentBeans.equals(studentBeansClone)) {
                 throw new Exception("Deleting error, record with id "+id+" not found");
             }
             log.trace("Saving");
@@ -152,7 +147,7 @@ public class DataProviderXML implements IDataProvider{
     public boolean updateSchoolRecord(long id, School school) {
         try {
             log.debug("Start updating record: reading file");
-            schoolBeans = loadBeanList(Constants.SCHOOL_XML_SOURCE);
+            List<School> schoolBeans = loadBeanList(Constants.SCHOOL_XML_SOURCE);
             log.trace("Searching required record: searching id");
             int index = schoolBeans.indexOf(receiveSchoolRecordById(id));
             log.trace("Insert new values");
@@ -172,7 +167,7 @@ public class DataProviderXML implements IDataProvider{
     public boolean updateStudentRecord(long id, Student student) {
         try {
             log.debug("Start updating record: reading file");
-            studentBeans = loadBeanList(Constants.STUDENT_XML_SOURCE);
+            List<Student> studentBeans = loadBeanList(Constants.STUDENT_XML_SOURCE);
             log.trace("Searching required record: searching id");
             int index = studentBeans.indexOf(receiveStudentRecordById(id));
             log.trace("Insert new values");
@@ -190,9 +185,10 @@ public class DataProviderXML implements IDataProvider{
 
     @Override
     public School receiveSchoolRecordById(long id) {
+        School schoolBean = new School();
         try {
             log.debug("Start receiving record by id");
-            schoolBeans = loadBeanList(Constants.SCHOOL_XML_SOURCE);
+            List<School> schoolBeans = loadBeanList(Constants.SCHOOL_XML_SOURCE);
             schoolBean = schoolBeans.stream()
                     .filter(bean -> bean.getId() == id)
                     .findAny()
@@ -208,9 +204,10 @@ public class DataProviderXML implements IDataProvider{
 
     @Override
     public Student receiveStudentRecordById(long id) {
+        Student studentBean = new Student();
         try {
             log.debug("Start receiving record by id");
-            studentBeans = loadBeanList(Constants.STUDENT_XML_SOURCE);
+            List<Student> studentBeans = loadBeanList(Constants.STUDENT_XML_SOURCE);
             studentBean = studentBeans.stream()
                     .filter(bean -> bean.getId() == id)
                     .findAny()
@@ -265,8 +262,7 @@ public class DataProviderXML implements IDataProvider{
             log.debug("Start reading file");
             Serializer serializer = new Persister();
             FileReader file = new FileReader(ConfigurationUtil.getConfigurationEntry(path));
-            WrapperXML<T> xml;
-            xml = serializer.read(WrapperXML.class, file);
+            WrapperXML<T> xml = serializer.read(WrapperXML.class, file);
             loadedBeans = xml.getList();
             file.close();
         }
@@ -278,7 +274,7 @@ public class DataProviderXML implements IDataProvider{
     }
 
 
-    private  <T> String findPath(List<T> bean){
+    private <T> String findPath(List<T> bean){
         log.debug("Class of elements inside list: "+bean.get(0).getClass().getSimpleName());
         switch(bean.get(0).getClass().getSimpleName()) {
             case "School":

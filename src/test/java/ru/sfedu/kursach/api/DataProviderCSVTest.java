@@ -22,8 +22,8 @@ public class DataProviderCSVTest extends Main {
 
 
     @Test
-    public void receiveSchoolRecordByIdPositive() {
-        log.info("receiveSchoolRecordByIdPositive");
+    public void receiveSchoolRecordByIdSuccessful() {
+        log.info("receiveSchoolRecordByIdSuccesful");
 
         schoolBean.setId();
         schoolBean.setNumber(28);
@@ -35,8 +35,8 @@ public class DataProviderCSVTest extends Main {
     }
 
     @Test
-    public void receiveSchoolRecordByIdNegative() {
-        log.info("receiveSchoolRecordByIdNegative");
+    public void receiveSchoolRecordByIdFail() {
+        log.info("receiveSchoolRecordByIdFail");
 
         schoolBean.setId();
         schoolBean.setNumber(28);
@@ -49,8 +49,8 @@ public class DataProviderCSVTest extends Main {
     }
 
     @Test
-    public void deleteSchoolRecordPositive() {
-        log.info("deleteSchoolRecordPositive");
+    public void deleteSchoolRecordSuccessful() {
+        log.info("deleteSchoolRecordSuccesful");
 
         schoolBean.setId();
         schoolBean.setNumber(28);
@@ -61,8 +61,8 @@ public class DataProviderCSVTest extends Main {
     }
 
     @Test
-    public void deleteSchoolRecordNegative() {
-        log.info("deleteSchoolRecordNegative");
+    public void deleteSchoolRecordFail() {
+        log.info("deleteSchoolRecordFail");
 
         schoolBean.setId();
         schoolBean.setNumber(28);
@@ -74,8 +74,8 @@ public class DataProviderCSVTest extends Main {
     }
 
     @Test
-    public void updateSchoolRecordPositive() {
-        log.info("updateSchoolRecordPositive");
+    public void updateSchoolRecordSuccessful() {
+        log.info("updateSchoolRecordSuccesful");
 
         schoolBean.setId();
         schoolBean.setNumber(28);
@@ -88,8 +88,8 @@ public class DataProviderCSVTest extends Main {
     }
 
     @Test
-    public void updateSchoolRecordNegative() {
-        log.info("updateSchoolRecordNegative");
+    public void updateSchoolRecordFail() {
+        log.info("updateSchoolRecordFail");
 
         schoolBean.setId();
         schoolBean.setNumber(28);
@@ -97,13 +97,13 @@ public class DataProviderCSVTest extends Main {
 
         dataProviderCSV.addSchoolRecord(schoolBean);
         schoolBean.setAddress("Другой адрес 99");
-        assertTrue(dataProviderCSV.updateSchoolRecord(5000000000L,schoolBean));
+        assertFalse(dataProviderCSV.updateSchoolRecord(500000000000000L,schoolBean));
         dataProviderCSV.deleteSchoolRecord(schoolBean.getId());
     }
 
     @Test
-    public void addSchoolRecordPositive() {
-        log.info("addSchoolRecordPositive");
+    public void addSchoolRecordSuccessful() {
+        log.info("addSchoolRecordSuccesful");
 
         schoolBean.setId();
         schoolBean.setNumber(28);
@@ -114,9 +114,9 @@ public class DataProviderCSVTest extends Main {
     }
 
     @Test
-    public void addSchoolRecordNegative() {
+    public void addSchoolRecordFail() {
         log.info("addSchoolRecordNegative");
         School emptySchool = null;
-        assertFalse(dataProviderCSV.addSchoolRecord(emptySchool));
+        assertFalse(dataProviderCSV.addSchoolRecord(null));
     }
 }

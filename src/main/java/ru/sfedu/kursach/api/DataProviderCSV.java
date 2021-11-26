@@ -20,16 +20,13 @@ import java.util.function.Predicate;
 public class DataProviderCSV implements IDataProvider  {
 
     private static final Logger log = LogManager.getLogger(Main.class);
-    List<School> schoolBeans = null;
-    List<Student> studentBeans = null;
-    School schoolBean = new School();
-    Student studentBean = new Student();
 
     @Override
     public boolean viewAllSchool() {
         try {
             log.info("Start viewing schools");
-            schoolBeans = loadBeanList(Constants.SCHOOL_CSV_SOURCE, schoolBean);
+            School schoolBean = new School();
+            List<School> schoolBeans = loadBeanList(Constants.SCHOOL_CSV_SOURCE, schoolBean);
             schoolBeans.stream().forEach(bean -> log.info(bean));
             log.info("Viewing complete");
         }
@@ -45,7 +42,8 @@ public class DataProviderCSV implements IDataProvider  {
     public boolean viewAllStudent() {
         try {
             log.info("Start viewing students");
-            studentBeans = loadBeanList(Constants.STUDENT_CSV_SOURCE, studentBean);
+            Student studentBean = new Student();
+            List<Student> studentBeans = loadBeanList(Constants.STUDENT_CSV_SOURCE, studentBean);
             studentBeans.stream().forEach(bean -> log.info(bean));
             log.info("Viewing complete");
         }
@@ -59,9 +57,10 @@ public class DataProviderCSV implements IDataProvider  {
 
     @Override
     public School receiveSchoolRecordById(long id) {
+        School schoolBean = new School();
         try {
             log.info("Start receiving record by id");
-            schoolBean = (School) loadBeanList(Constants.SCHOOL_CSV_SOURCE, schoolBean).stream()
+            schoolBean = loadBeanList(Constants.SCHOOL_CSV_SOURCE, schoolBean).stream()
                     .filter(beans-> ((School) beans).getId() == id)
                     .findAny().get();
             log.info("Receiving record complete");
@@ -75,9 +74,10 @@ public class DataProviderCSV implements IDataProvider  {
 
     @Override
     public Student receiveStudentRecordById(long id) {
+        Student studentBean = new Student();
         try {
             log.info("Start receiving record by id");
-            studentBean = (Student) loadBeanList(Constants.STUDENT_CSV_SOURCE, studentBean).stream()
+            studentBean = loadBeanList(Constants.STUDENT_CSV_SOURCE, studentBean).stream()
                     .filter(beans-> ((Student) beans).getId() == id)
                     .findAny().get();
             log.info("Receiving record complete");
@@ -94,7 +94,8 @@ public class DataProviderCSV implements IDataProvider  {
     public boolean deleteSchoolRecord(long id){
         try {
             log.info("Start deleting record: reading file");
-            schoolBeans = loadBeanList(Constants.SCHOOL_CSV_SOURCE, schoolBean);
+            School schoolBean = new School();
+            List<School> schoolBeans = loadBeanList(Constants.SCHOOL_CSV_SOURCE, schoolBean);
             log.info("Searching required record");
             Predicate<School> isDeletable = emp -> emp.getId() == id;
             log.info("Removing required record");
@@ -114,7 +115,8 @@ public class DataProviderCSV implements IDataProvider  {
     public boolean deleteStudentRecord(long id) {
         try {
             log.info("Start deleting record: reading file");
-            studentBeans = loadBeanList(Constants.STUDENT_CSV_SOURCE, studentBean);
+            Student studentBean = new Student();
+            List<Student> studentBeans = loadBeanList(Constants.STUDENT_CSV_SOURCE, studentBean);
             log.info("Searching required record");
             Predicate<Student> isDeletable = order -> order.getId() == id;
             log.info("Removing required record");
@@ -134,9 +136,9 @@ public class DataProviderCSV implements IDataProvider  {
     @Override
     public boolean updateSchoolRecord(long id, School school) {
         try {
-
             log.info("Start updating record: reading file");
-            schoolBeans = loadBeanList(Constants.SCHOOL_CSV_SOURCE, schoolBean);
+            School schoolBean = new School();
+            List<School> schoolBeans = loadBeanList(Constants.SCHOOL_CSV_SOURCE, schoolBean);
             log.info("Searching required record: searching id");
             int index = schoolBeans.indexOf(receiveSchoolRecordById(id));
             log.info("Insert new values");
@@ -157,7 +159,8 @@ public class DataProviderCSV implements IDataProvider  {
         try {
 
             log.info("Start updating record: reading file");
-            studentBeans = loadBeanList(Constants.STUDENT_CSV_SOURCE, studentBean);
+            Student studentBean = new Student();
+            List<Student> studentBeans = loadBeanList(Constants.STUDENT_CSV_SOURCE, studentBean);
             log.info("Searching required record: searching id");
             int index = studentBeans.indexOf(receiveStudentRecordById(id));
             log.info("Insert new values");
@@ -177,7 +180,8 @@ public class DataProviderCSV implements IDataProvider  {
     public boolean addSchoolRecord(School school) {
         try {
             log.info("Start adding record: reading file");
-            schoolBeans = loadBeanList(Constants.SCHOOL_CSV_SOURCE, schoolBean);
+            School schoolBean = new School();
+            List<School> schoolBeans = loadBeanList(Constants.SCHOOL_CSV_SOURCE, schoolBean);
             log.info("Adding record");
             schoolBeans.add(school);
             log.info("Adding complete");
@@ -195,7 +199,8 @@ public class DataProviderCSV implements IDataProvider  {
     public boolean addStudentRecord(Student student) {
         try {
             log.info("Start adding record: reading file");
-            studentBeans = loadBeanList(Constants.STUDENT_CSV_SOURCE, studentBean);
+            Student studentBean = new Student();
+            List<Student> studentBeans = loadBeanList(Constants.STUDENT_CSV_SOURCE, studentBean);
             log.info(studentBeans);
             log.info("Adding record");
             studentBeans.add(student);
