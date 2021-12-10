@@ -11,6 +11,7 @@ public class mongoDB {
     private static final Logger log = LogManager.getLogger(Main.class);
 
     public boolean connectToDB(){
+        //ghgh
         try{
             MongoClient mongoClient = new MongoClient("localhost", 27017);
             DB database = mongoClient.getDB("myMongoDb");

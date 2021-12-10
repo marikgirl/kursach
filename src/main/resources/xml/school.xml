@@ -44,4 +44,9 @@
       <number>123</number>
       <address>new address</address>
    </object>
+   <object class="ru.sfedu.kursach.model.beans.School">
+      <id>1639117260817</id>
+      <number>123</number>
+      <address>new address</address>
+   </object>
 </main>
