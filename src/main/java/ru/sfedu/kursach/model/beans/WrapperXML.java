@@ -13,6 +13,8 @@ public class WrapperXML<T>{
 
     public WrapperXML() {
     }
+//
+//    public static class list{}
 
     public WrapperXML(List<T> list) {
         this.list = list;

@@ -20,9 +20,9 @@ public class kursachClient {
     public void logBasicSystemInfo() throws IOException {
         School schoolBean = new School();
 
-        schoolBean.setAddress("unknown address");
+        schoolBean.setAddress("new address");
         schoolBean.setId();
-        schoolBean.setNumber(58);
+        schoolBean.setNumber(123);
         DataProviderCSV dataProviderCSV = new DataProviderCSV();
         DataProviderXML dataProviderXML = new DataProviderXML();
 
@@ -32,16 +32,21 @@ public class kursachClient {
         dataProviderCSV.viewAllSchool();
         dataProviderXML.viewAllSchool();
 
-        schoolBean.setNumber(128);
-
-        dataProviderCSV.receiveSchoolRecordById(schoolBean.getId());
-        dataProviderXML.receiveSchoolRecordById(schoolBean.getId());
-
-        dataProviderCSV.updateSchoolRecord(schoolBean.getId(), schoolBean);
-        dataProviderXML.updateSchoolRecord(schoolBean.getId(), schoolBean);
+        dataProviderCSV.deleteSchoolRecord(schoolBean.getId());
 
         dataProviderCSV.viewAllSchool();
-        dataProviderXML.viewAllSchool();
+
+        dataProviderCSV.deleteSchoolRecord(schoolBean.getId());
+//        schoolBean.setNumber(128);
+//
+//        dataProviderCSV.receiveSchoolRecordById(schoolBean.getId());
+//        dataProviderXML.receiveSchoolRecordById(schoolBean.getId());
+//
+//        dataProviderCSV.updateSchoolRecord(schoolBean.getId(), schoolBean);
+//        dataProviderXML.updateSchoolRecord(schoolBean.getId(), schoolBean);
+//
+//        dataProviderCSV.viewAllSchool();
+//        dataProviderXML.viewAllSchool();
         //String pathh = ConfigurationUtil.getConfigurationEntry(Constants.DB_CONFIG_USER);
 
 //        log.info(pathh);

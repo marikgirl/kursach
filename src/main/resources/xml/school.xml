@@ -1,0 +1,47 @@
+<main>
+   <object class="ru.sfedu.kursach.model.beans.School">
+      <id>1</id>
+      <number>1</number>
+      <address>123456</address>
+   </object>
+   <object class="ru.sfedu.kursach.model.beans.School">
+      <id>1638514980327</id>
+      <number>128</number>
+      <address>unknown address</address>
+   </object>
+   <object class="ru.sfedu.kursach.model.beans.School">
+      <id>1638610127066</id>
+      <number>128</number>
+      <address>unknown address</address>
+   </object>
+   <object class="ru.sfedu.kursach.model.beans.School">
+      <id>1638610145164</id>
+      <number>128</number>
+      <address>unknown address</address>
+   </object>
+   <object class="ru.sfedu.kursach.model.beans.School">
+      <id>1638660275357</id>
+      <number>123</number>
+      <address>new address</address>
+   </object>
+   <object class="ru.sfedu.kursach.model.beans.School">
+      <id>1638660579591</id>
+      <number>123</number>
+      <address>new address</address>
+   </object>
+   <object class="ru.sfedu.kursach.model.beans.School">
+      <id>1638660652213</id>
+      <number>123</number>
+      <address>new address</address>
+   </object>
+   <object class="ru.sfedu.kursach.model.beans.School">
+      <id>1638661059661</id>
+      <number>123</number>
+      <address>new address</address>
+   </object>
+   <object class="ru.sfedu.kursach.model.beans.School">
+      <id>1638699871133</id>
+      <number>123</number>
+      <address>new address</address>
+   </object>
+</main>

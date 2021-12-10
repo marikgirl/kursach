@@ -93,19 +93,20 @@ public class DataProviderCSV implements IDataProvider  {
     @Override
     public boolean deleteSchoolRecord(long id){
         try {
+            log.info("School deleting id = " + id);
             log.info("Start deleting record: reading file");
             School schoolBean = new School();
             List<School> schoolBeans = loadBeanList(Constants.SCHOOL_CSV_SOURCE, schoolBean);
             log.info("Searching required record");
-            Predicate<School> isDeletable = emp -> emp.getId() == id;
+            Predicate<School> isDeletable = school -> school.getId() == id;
             log.info("Removing required record");
-            schoolBeans.removeIf(isDeletable);
+            if (!schoolBeans.removeIf(isDeletable)) throw new Exception("Trying to delete non-existent record");
             log.info("Saving");
             saveFile(schoolBeans);
         }
         catch(Exception e) {
-            log.info("Deleting Error");
-            log.info(e.getClass().getName() + ": " + e.getMessage());
+            log.error("Deleting Error");
+            log.error(e.getClass().getName() + ": " + e.getMessage());
             return false;
         }
         return true;
@@ -179,6 +180,9 @@ public class DataProviderCSV implements IDataProvider  {
     @Override
     public boolean addSchoolRecord(School school) {
         try {
+            if (school == null){
+                throw new Exception("Adding a null data");
+            }
             log.info("Start adding record: reading file");
             School schoolBean = new School();
             List<School> schoolBeans = loadBeanList(Constants.SCHOOL_CSV_SOURCE, schoolBean);
@@ -255,6 +259,7 @@ public class DataProviderCSV implements IDataProvider  {
             log.info("Loading Error");
             log.info(e.getClass().getName() + ": " + e.getMessage());
         }
+
         return loadedBeans;
     }
 

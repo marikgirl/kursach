@@ -116,7 +116,6 @@ public class DataProviderCSVTest extends Main {
     @Test
     public void addSchoolRecordFail() {
         log.info("addSchoolRecordNegative");
-        School emptySchool = null;
         assertFalse(dataProviderCSV.addSchoolRecord(null));
     }
 }

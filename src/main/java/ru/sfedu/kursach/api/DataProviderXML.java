@@ -30,7 +30,7 @@ public class DataProviderXML implements IDataProvider{
             log.trace("Viewing School complete");
         }
         catch(Exception e){
-            log.error("Viewing School Error");
+            log.error("XML school viewing School Error");
             log.error(e.getClass().getName() + ": " + e.getMessage());
             return false;
         }
@@ -46,7 +46,7 @@ public class DataProviderXML implements IDataProvider{
             log.trace("Viewing School complete");
         }
         catch(Exception e){
-            log.error("Viewing School Error");
+            log.error("XML student viewing School Error");
             log.error(e.getClass().getName() + ": " + e.getMessage());
             return false;
         }
@@ -66,7 +66,7 @@ public class DataProviderXML implements IDataProvider{
             saveFile(schoolBeans);
         }
         catch(Exception e) {
-            log.error("Adding Error");
+            log.error("XML school adding Error");
             log.error(e.getClass().getName() + ": " + e.getMessage());
             return false;
         }
@@ -86,7 +86,7 @@ public class DataProviderXML implements IDataProvider{
             saveFile(studentBeans);
         }
         catch(Exception e) {
-            log.error("Adding Error");
+            log.error("XML student adding Error");
             log.error(e.getClass().getName() + ": " + e.getMessage());
             return false;
         }
@@ -111,7 +111,7 @@ public class DataProviderXML implements IDataProvider{
 
         }
         catch(Exception e) {
-            log.error("Deleting Error");
+            log.error("XML school deleting Error");
             log.error(e.getClass().getName() + ": " + e.getMessage());
             return false;
         }
@@ -136,7 +136,7 @@ public class DataProviderXML implements IDataProvider{
 
         }
         catch(Exception e) {
-            log.error("Deleting Error");
+            log.error("XML student deleting Error");
             log.error(e.getClass().getName() + ": " + e.getMessage());
             return false;
         }
@@ -156,7 +156,7 @@ public class DataProviderXML implements IDataProvider{
             log.trace("Updating complete");
         }
         catch(Exception e) {
-            log.error("Updating Error");
+            log.error("XML school updating Error");
             log.error(e.getClass().getName() + ": " + e.getMessage());
             return false;
         }
@@ -176,7 +176,7 @@ public class DataProviderXML implements IDataProvider{
             log.trace("Updating complete");
         }
         catch(Exception e) {
-            log.error("Updating Error");
+            log.error("XML student updating Error");
             log.error(e.getClass().getName() + ": " + e.getMessage());
             return false;
         }
@@ -196,7 +196,7 @@ public class DataProviderXML implements IDataProvider{
             log.trace("Receiving record complete");
         }
         catch(Exception e) {
-            log.error("Receiving record by id Error ");
+            log.error("XML school receiving record by id Error ");
             log.error(e.getClass().getName() + ": " + e.getMessage());
         }
         return schoolBean;
@@ -215,7 +215,7 @@ public class DataProviderXML implements IDataProvider{
             log.trace("Receiving record complete");
         }
         catch(Exception e) {
-            log.error("Receiving record by id Error ");
+            log.error("XML student receiving record by id Error ");
             log.error(e.getClass().getName() + ": " + e.getMessage());
         }
         return studentBean;
@@ -230,7 +230,7 @@ public class DataProviderXML implements IDataProvider{
 
         }
         catch(Exception e){
-            log.error("Creating file Error");
+            log.error("XML creating file Error");
             log.error(e.getClass().getName() + ": " + e.getMessage());
             return false;
         }
@@ -248,7 +248,7 @@ public class DataProviderXML implements IDataProvider{
             serializer.write(xml, writer);
         }
         catch (Exception e){
-            log.error("Writing file Error");
+            log.error("XML writing file Error");
             log.error(e.getClass().getName() + ": " + e.getMessage());
             return false;
         }
@@ -262,12 +262,16 @@ public class DataProviderXML implements IDataProvider{
             log.debug("Start reading file");
             Serializer serializer = new Persister();
             FileReader file = new FileReader(ConfigurationUtil.getConfigurationEntry(path));
-            WrapperXML<T> xml = serializer.read(WrapperXML.class, file);
+
+            WrapperXML<T> xml;
+            xml = serializer.read(WrapperXML.class, file);
+            log.debug("wrapperxml creted sucessfully");
             loadedBeans = xml.getList();
+            log.debug("beans loaded sucesfully");
             file.close();
         }
         catch(Exception e){
-            log.error("Loading Error");
+            log.error("XML loading Error");
             log.error(e.getClass().getName() + ": " + e.getMessage());
         }
         return loadedBeans;

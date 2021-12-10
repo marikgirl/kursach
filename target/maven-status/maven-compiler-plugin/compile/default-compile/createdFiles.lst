@@ -1,6 +1,7 @@
 ru/sfedu/kursach/kursachClient.class
 ru/sfedu/kursach/model/beans/WrapperXML.class
 ru/sfedu/kursach/api/IDataProvider.class
+ru/sfedu/kursach/mongoDB.class
 ru/sfedu/kursach/api/DataProviderCSV.class
 ru/sfedu/kursach/model/beans/School.class
 ru/sfedu/kursach/api/DataProviderXML.class

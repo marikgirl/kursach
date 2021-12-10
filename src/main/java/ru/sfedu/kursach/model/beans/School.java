@@ -25,9 +25,7 @@ public class School implements Serializable {
         return id;
     }
 
-    public void setId() {
-        this.id = System.currentTimeMillis();
-    }
+    public void setId() {this.id = System.currentTimeMillis();}
 
     public int getNumber() {
         return number;
